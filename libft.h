@@ -6,7 +6,7 @@
 /*   By: yidabdes <ussef.id@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/07 20:47:47 by yidabdes          #+#    #+#             */
-/*   Updated: 2018/10/17 00:20:45 by yidabdes         ###   ########.fr       */
+/*   Updated: 2018/10/19 00:15:47 by yidabdes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strtrim(char const *s);
+char			**ft_strsplit(char const *str, char c);
+
 
 #endif
