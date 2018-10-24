@@ -5,35 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yidabdes <ussef.id@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/10 13:29:58 by yidabdes          #+#    #+#             */
-/*   Updated: 2018/10/10 13:29:59 by yidabdes         ###   ########.fr       */
+/*   Created: 2018/10/23 21:17:50 by yidabdes          #+#    #+#             */
+/*   Updated: 2018/10/23 21:18:58 by yidabdes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long int	ft_atoi(const char *str)
+static int		ft_is_digit(int c)
 {
-	int			i;
-	int			sign;
-	long int	nb;
+	return (c >= '0' && c <= '9');
+}
 
-	nb = 0;
+static int		ft_is_whitespace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || \
+	c == '\v' || c == '\f' || c == '\r');
+}
+
+int				ft_atoi(const char *str)
+{
+	int					sign;
+	unsigned long int	result;
+
 	sign = 1;
-	i = 0;
-	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\r'
-		|| str[i] == '\f' || str[i] == '\n' || str[i] == ' ')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	result = 0;
+	while (ft_is_whitespace(*str))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while ((*str != '\0') && ft_is_digit(*str))
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
+		if (result >= 9223372036854775807 && sign == 1)
+			return (-1);
+		else if (result > 9223372036854775807 && sign == -1)
+			return (0);
+		result = (result * 10) + (*str - '0');
+		str++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nb = nb * 10 + str[i] - '0';
-		i++;
-	}
-	return (sign * nb);
+	return ((int)(result * sign));
 }

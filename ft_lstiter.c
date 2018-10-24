@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yidabdes <ussef.id@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/16 00:25:48 by yidabdes          #+#    #+#             */
-/*   Updated: 2018/10/23 22:07:56 by yidabdes         ###   ########.fr       */
+/*   Created: 2018/10/24 00:22:31 by yidabdes          #+#    #+#             */
+/*   Updated: 2018/10/24 00:33:54 by yidabdes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	unsigned int i;
-
-	i = 0;
-	if (s == NULL || f == NULL)
-		return ;
-	while (s[i] != '\0')
+	if (lst && f)
 	{
-		f(i, &s[i]);
-		i++;
+		while (lst)
+		{
+			(*f)(lst);
+			lst = lst->next;
+		}
 	}
 }

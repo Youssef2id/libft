@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yidabdes <ussef.id@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/16 00:25:48 by yidabdes          #+#    #+#             */
-/*   Updated: 2018/10/23 22:07:56 by yidabdes         ###   ########.fr       */
+/*   Created: 2018/10/23 23:54:42 by yidabdes          #+#    #+#             */
+/*   Updated: 2018/10/24 00:00:13 by yidabdes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	unsigned int i;
-
-	i = 0;
-	if (s == NULL || f == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		f(i, &s[i]);
-		i++;
-	}
+	del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
 }
